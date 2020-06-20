@@ -37,14 +37,12 @@ function every859am(yourcode) {
 }
 
 var sidebar;
-$('body').css({
-	'padding-right': '350px',
-});
+
 sidebar = $(`
-<div dir="ltr" id="sidebar" style="padding:10px">
+<div  id="sidebar" style="padding:10px">
 	<span style="float:left; color:black">fetch</span>
 	<input
-		style="float:right; color:black; width:100%"
+		style="float:right; color:black; "
 		type="text"
 		id="fetch-input"
 		oninput="{console.log(this.value)}"
@@ -55,9 +53,9 @@ sidebar = $(`
 	<span style="float:left; color:black">startTime</span>
 	<br />
 	<form>
-		<div dir="ltr" class="form-row">
-			<div class="form-group col-md-6">
-				<label style="float:left" class="text-dark" for="hour-input black">hour</label>
+		<div class="form-row">
+			<div class="form-group col-md-3">
+				<label style="float:left" class="text-dark" for="hour-input>hour</label>
 				<input
 					style="color:black"
 					type="text"
@@ -66,19 +64,19 @@ sidebar = $(`
 					placeholder="hour"
 				/>
 			</div>
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-3">
 				<label style="float:left" class="text-dark" for="minute">min</label>
 				<input
 					style="color:black"
 					type="text"
-					id="minute-input"
+					id="minute"
 					oninput="{console.log(this.value)}"
 					placeholder="minute"
 				/>
 			</div>
-		</div>
-		<div class="form-row">
-			<div class="form-group col-md-6">
+		
+		
+			<div class="form-group col-md-3">
 				<label style="float:left" class="text-dark" for="sec-input">sec</label>
 				<input
 					style="color:black"
@@ -88,14 +86,14 @@ sidebar = $(`
 					placeholder="sec"
 				/>
 			</div>
-			<div class="form-group col-md-6">
-				<label style="float:left" class="text-dark" for="milli-sec-input">milli sec</label>
+			<div class="form-group col-md-3">
+				<label style="float:left" class="text-dark" for="milli-sec-input">millisec</label>
 				<input
 					style="color:black"
 					type="text"
 					id="milli-sec-input"
 					oninput="{console.log(this.value)}"
-					placeholder="milli sec"
+					placeholder="millisec"
 				/>
 			</div>
 		</div>
@@ -132,7 +130,13 @@ sidebar = $(`
 		class="btn btn-primary"
 		style="float:center; width:90%">
 		Start
+			
 	</button>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
 </div>;
 
   `);
@@ -141,8 +145,9 @@ sidebar.css({
 	right: '0px',
 	top: '0px',
 	'z-index': 9999,
-	width: '290px',
-	height: '1500px',
-	'background-color': 'white', // Confirm it shows up
+	width: '350px',
+	'overflow-y': 'scroll',
+	'background-color': 'red', // Confirm it shows up
+	'max-height': '100%',
 });
 $('body').append(sidebar);
