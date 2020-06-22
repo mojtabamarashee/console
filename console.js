@@ -18,16 +18,32 @@ $(document.head).append(
 	'<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>',
 );
 
-function every859am(yourcode) {
+function Every859am(yourCode) {
 	var now = new Date(),
 		start,
 		wait;
 
-	if (now.getHours() < 9) {
-		start = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 59, 0, 0);
+	let startTime = [
+		$("#hour-input").val(),
+		$('#minute-input').val(),
+		$('#sec-input').val(),
+		$('#milli-sec-input').val(),
+	];
+	console.log('startTime = ', startTime);
+	if (now.getHours() < 1000) {
+		start = new Date(
+			now.getFullYear(),
+			now.getMonth(),
+			now.getDate(),
+			$('#hour-input').val(),
+			$('#minute-input').val(),
+			$('#sec-input').val(),
+			$('#milli-sec-input').val(),
+		);
 	}
 
 	wait = start.getTime() - now.getTime();
+    console.log("getTime = ", now.getTime());
 	console.log('wait = ', wait);
 	setTimeout(yourCode, wait);
 }
@@ -151,9 +167,7 @@ sidebar = $(`
 
 	<button
 		type="button"
-		onclick="{console.log('test');
-        console.log($('#fetch-input').val())
-		}"
+		onclick="console.log('test');StartFunc();"
 		class="btn btn-lg btn-primary"
 		style="float:center; width:100%">
 		Start
@@ -172,6 +186,12 @@ sidebar.css({
 });
 $('body').append(sidebar);
 
-$(document).ready(() => {
-	$('#fetch-input').val(212122);
-});
+$(document).ready(() => {});
+
+let StartFunc = () => {
+    console.log("fetch = ", fetch);
+	fetch = $('#fetch-input').val();
+	func = eval(fetch);
+    console.log("func = ", func);
+    Every859am(()=>{console.log('now')});
+};
