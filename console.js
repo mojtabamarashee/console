@@ -56,33 +56,36 @@ $('body').css({
 	'padding-right': '350px',
 });
 sidebar = $(`
-<div dir="ltr" id="sidebar" class="border border-dark" style="padding:10px; font-size:small">
+<div dir="ltr" id="sidebar" class="border border-dark" style="padding:10px; font-size:small; ">
 	<form>
-		<div class="form-group">
-			<label for="exampleInputEmail1">fetch</label>
-			<input
-				type="email"
-				class="form-control"
-				id="fetch-input"
-				aria-describedby="emailHelp"
-				placeholder="paste fetch"
-			/>
-			<small id="emailHelp" class="form-text text-muted">
-				copy from console
-			</small>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label for="fetch-input" style="color:black">fetch</label>
+				<input
+					type="email"
+					class="form-control"
+					id="fetch-input"
+					aria-describedby="emailHelp"
+					placeholder="paste fetch"
+                    
+				/>
+				<small id="emailHelp" class="form-text text-muted">
+					copy from console
+				</small>
+			</div>
 		</div>
 		<label class="label label-primary" style="float:left;">
 			startTime
 		</label>
 		<br />
 		<div style="padding:2%" class="border border-warning rounded">
-			<div class="form-row ">
+			<div class="form-row " style="float:left">
 				<div class="form-group col-md-6">
 					<label style="float:left" class="text-dark" for="hour-input">
 						hour
 					</label>
 					<input
-						style="color:black"
+						style="color:white"
 						type="text"
 						id="hour-input"
 						oninput="{console.log(this.value)}"
@@ -95,7 +98,7 @@ sidebar = $(`
 						min
 					</label>
 					<input
-						style="color:black"
+						style="color:white"
 						type="text"
 						id="minute-input"
 						oninput="{console.log(this.value)}"
@@ -110,7 +113,7 @@ sidebar = $(`
 						sec
 					</label>
 					<input
-						style="color:black"
+						style="color:white"
 						type="text"
 						id="sec-input"
 						oninput="{console.log(this.value)}"
@@ -123,7 +126,7 @@ sidebar = $(`
 						millisec
 					</label>
 					<input
-						style="color:black"
+						style="color:white"
 						type="text"
 						id="milli-sec-input"
 						oninput="{console.log(this.value)}"
@@ -140,7 +143,7 @@ sidebar = $(`
 						delay
 					</label>
 					<input
-						style="color:black"
+						style="color:white"
 						type="text"
 						id="delay-input"
 						oninput="{console.log(this.value)}"
@@ -153,7 +156,7 @@ sidebar = $(`
 						interval
 					</label>
 					<input
-						style="color:black"
+						style="color:white"
 						type="text"
 						id="interval-input"
 						oninput="{console.log(this.value)}"
