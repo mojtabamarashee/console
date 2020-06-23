@@ -24,7 +24,7 @@ function Every859am(yourCode) {
 		wait;
 
 	let startTime = [
-		$("#hour-input").val(),
+		$('#hour-input').val(),
 		$('#minute-input').val(),
 		$('#sec-input').val(),
 		$('#milli-sec-input').val(),
@@ -38,14 +38,17 @@ function Every859am(yourCode) {
 			$('#hour-input').val(),
 			$('#minute-input').val(),
 			$('#sec-input').val(),
-			$('#milli-sec-input').val(),
+			$('#milli-sec-input').val() + $('#delay-input').val(),
 		);
 	}
 
 	wait = start.getTime() - now.getTime();
-    console.log("getTime = ", now.getTime());
+	console.log('nowTime = ', now.getTime());
 	console.log('wait = ', wait);
-	setTimeout(yourCode, wait);
+	console.log('interval = ', $('#interval-input').val());
+	setTimeout(() => {
+		setInterval(yourCode, $('#interval-input').val());
+	}, wait);
 }
 
 var sidebar;
@@ -186,12 +189,26 @@ sidebar.css({
 });
 $('body').append(sidebar);
 
-$(document).ready(() => {});
-
+$(document).ready(() => {
+	$('#hour-input').val(new Date().getHours());
+	$('#minute-input').val(new Date().getMinutes() + 1);
+	$('#sec-input').val(0);
+	$('#milli-sec-input').val(0);
+	$('#interval-input').val(1000);
+	$('#delay-input').val(0);
+	//$('#fetch-input').val('fetch("https://d11.emofid.com/easy/api/OmsOrder", {  "headers": {    "accept": "application/json, text/plain, */*",    "accept-language": "en-GB,en;q=0.9,fa-IR;q=0.8,fa;q=0.7,en-US;q=0.6,ar;q=0.5,sd;q=0.4",    "authorization": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImI3MmYyMjczZTE4YTQ0YjQ5OTFmMDg3ODIzNzQyYmI1IiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE1OTI4OTY5NDUsImV4cCI6MTU5MjkwNzc1NSwiaXNzIjoiaHR0cHM6Ly9hY2NvdW50LmVtb2ZpZC5jb20iLCJhdWQiOlsiZWFzeTJfYXBpIiwiaHR0cHM6Ly9hY2NvdW50LmVtb2ZpZC5jb20vcmVzb3VyY2VzIl0sImNsaWVudF9pZCI6ImVhc3kyX2NsaWVudF9wa2NlIiwic3ViIjoiMzRjYTYxNmMtZmE3Ni00M2JiLWE5N2UtM2NkMWExNjMxYTQ0IiwiYXV0aF90aW1lIjoxNTkyODk2OTQyLCJpZHAiOiJsb2NhbCIsInBrIjoiMzRjYTYxNmMtZmE3Ni00M2JiLWE5N2UtM2NkMWExNjMxYTQ0IiwidHdvX2ZhY3Rvcl9lbmFibGVkIjoiZmFsc2UiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiIzNGNhNjE2Yy1mYTc2LTQzYmItYTk3ZS0zY2QxYTE2MzFhNDQiLCJuYW1lIjoiMzRjYTYxNmMtZmE3Ni00M2JiLWE5N2UtM2NkMWExNjMxYTQ0IiwiZW1haWwiOiJtb2p0YWJhbWFyYXNoZWVAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBob25lX251bWJlciI6IjA5MTI1MTE4NzM2IiwicGhvbmVfbnVtYmVyX3ZlcmlmaWVkIjp0cnVlLCJuYXRpb25hbF9pZCI6IjE4ODE2OTQ2MTUiLCJuYXRpb25hbF9pZF92ZXJpZmllZCI6InRydWUiLCJjdXN0b21lcl9pc2luIjoiMTEyOTE4ODE2OTQ2MTUiLCJzY29wZSI6WyJvcGVuaWQiLCJlYXN5Ml9hcGkiXSwiYW1yIjpbInB3ZCJdfQ.H27C8PsazBZpB_5wsyWzlSk2UD_JwG6qDjMzAEEKIHY_mutXSxNfrtOtGVUTv130KuupE-fn5vzwTxB2U3z1uYk6GKa9J8SlCOniZOlG0UAJ53NH4XbL8EHfy5wcPfTCYAHkK8d30_7v-aQGjbJ0d7m20Q8_QgTmj1ofPIdZrb8u8A3AvRFDpiU-oTqSV9rUwH5VrLRzaZPgg814IbfnN97SJ9gdVlvHxQKhTpvHwGNToF0SbEPL3fLWdWU6THxV-_vzpETTwsBzcAkmMryo7dzOFmmKrxMzzeZrWSUU5T4ZxCpmPUJ65HfCVEFORJTUS8JdD9JiFRJs6byF30mdWA",    "content-type": "application/json",    "sec-fetch-dest": "empty",    "sec-fetch-mode": "cors",    "sec-fetch-site": "same-site"  },  "referrer": "https://d.easytrader.emofid.com/",  "referrerPolicy": "no-referrer-when-downgrade",  "body": "{\"isin\":\"IRO3GASZ0001\",\"financeId\":1,\"quantity\":200000,\"price\":81230,\"side\":0,\"validityType\":74,\"validityDateJalali\":\"1399/4/3\",\"easySource\":1,\"referenceKey\":\"6c31d78d-eb0f-4bd6-8b3f-d2e6586a4af9\",\"cautionAgreementSelected\":false}",  "method": "POST",  "mode": "cors",  "credentials": "include"});');
+});
 let StartFunc = () => {
-    console.log("fetch = ", fetch);
-	fetch = $('#fetch-input').val();
-	func = eval(fetch);
-    console.log("func = ", func);
-    Every859am(()=>{console.log('now')});
+	let fetchI = $('#fetch-input').val();
+	console.log('fetch = ', fetchI);
+	let re = fetchI.replace(/"credentials": "include"/g, '');
+	//re = re.replace(/\\/g, '\\\\');
+	console.log('re = ', re);
+	let func = () => {eval(re)};
+	console.log('func = ', func());
+	Every859am(() => {
+		let d = new Date();
+		console.log(d.getMinutes() + ':' + d.getMilliseconds());
+		func();
+	});
 };
