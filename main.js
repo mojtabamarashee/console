@@ -15,19 +15,19 @@ function createWindow() {
 		},
 	});
 	win.setBrowserView(view1);
-	view1.setBounds({x: 0, y: 0, width: 400, height: 400});
+	view1.setBounds({x: 0, y: 0, width: 800, height: 600});
 	view1.setAutoResize({width: true, height: true});
 	view1.webContents.loadURL('https://d.easytrader.emofid.com/');
 	testCntr = 0;
 	setInterval(() => {
-		if (testCntr < 30) {
+		if (testCntr < 300000) {
 			view1.webContents.sendInputEvent({keyCode: 'F9', type: 'keyDown'});
 			console.log('a');
 			testCntr++;
 		}
-	}, 1000);
+	}, 300);
 
-	view = new BrowserView({
+	/*view = new BrowserView({
 		webPreferences: {
 			nodeIntegration: false,
 		},
@@ -36,6 +36,6 @@ function createWindow() {
 	view.setBounds({x: 0, y: 400, width: 400, height: 200});
 	view.setAutoResize({width: true, height: true});
 	view.webContents.loadFile('console.js');
-	win.webContents.openDevTools();
+	win.webContents.openDevTools();*/
 }
 app.on('ready', createWindow);
