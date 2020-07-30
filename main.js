@@ -2,40 +2,61 @@
 
 const {app, BrowserWindow, Menu, BrowserView} = require('electron');
 electron = require('electron');
+const {ipcMain} = require('electron');
+let start = 0;
 
-function createWindow() {
-	let win = new BrowserWindow({width: 800, height: 600});
+function CreateMainWin() {
+	let win = new BrowserWindow({width: 600, height: 800});
 	win.on('closed', () => {
 		win = null;
 	});
 
-	let view1 = new BrowserView({
-		webPreferences: {
-			nodeIntegration: false,
-		},
-	});
-	win.setBrowserView(view1);
-	view1.setBounds({x: 0, y: 0, width: 800, height: 600});
-	view1.setAutoResize({width: true, height: true});
-	view1.webContents.loadURL('https://d.easytrader.emofid.com/');
-	testCntr = 0;
-	setInterval(() => {
-		if (testCntr < 300000) {
-			view1.webContents.sendInputEvent({keyCode: 'F9', type: 'keyDown'});
-			console.log('a');
-			testCntr++;
+	interval = setInterval(() => {
+		if (start) {
+			win.webContents.sendInputEvent({keyCode: 'F9', type: 'keyDown'});
+			console.log('F9');
 		}
-	}, 300);
+	}, 1000);
 
-	/*view = new BrowserView({
+	win.webContents.loadURL('https://d.easytrader.emofid.com/');
+	return win;
+}
+
+function CreateCommandWin() {
+	let win = new BrowserWindow({
+		width: 400,
+		height: 800,
 		webPreferences: {
-			nodeIntegration: false,
+			nodeIntegration: true,
 		},
 	});
-	win.addBrowserView(view);
-	view.setBounds({x: 0, y: 400, width: 400, height: 200});
-	view.setAutoResize({width: true, height: true});
-	view.webContents.loadFile('console.js');
-	win.webContents.openDevTools();*/
+	let close = 0;
+	win.on('closed', () => {
+		win = null;
+		clearInterval(interval);
+	});
+
+	win.webContents.loadURL(`file://${__dirname}/test.html`);
+	win.webContents.openDevTools();
+	return win;
 }
-app.on('ready', createWindow);
+
+function main() {
+	commandWin = CreateMainWin();
+	mainWin = CreateCommandWin();
+
+	ipcMain.on('start', (event, arg) => {
+		console.log('start: ', arg); // this comes form within window 1 -> and into the mainProcess
+		event.sender.send('nameReply', {not_right: false}); // sends back/replies to window 1 - "event" is a reference to this chanel.
+		//window2.webContents.send('forWin2', arg); // sends the stuff from Window1 to Window2.
+        start = 1;
+	});
+
+	ipcMain.on('stop', (event, arg) => {
+		console.log('stop: ', arg); // this comes form within window 1 -> and into the mainProcess
+		event.sender.send('nameReply', {not_right: false}); // sends back/replies to window 1 - "event" is a reference to this chanel.
+		//window2.webContents.send('forWin2', arg); // sends the stuff from Window1 to Window2.
+        start = 0;
+	});
+}
+app.on('ready', main);
