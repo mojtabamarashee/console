@@ -74,7 +74,8 @@ console.log("ipcRenderer = ", ipcRenderer);
 	<br />
 	<br />
 	<span style="float:left; color:black">interval</span>
-	<input style="float:right; color:black" type="text" id="interval-input" oninput="{console.log(this.value)}" />
+	<input style="float:right; color:black" type="text" id="interval-input" oninput="{console.log(this.value); ipcRenderer.send('interval', this.value);}" />
+        
 	<br />
 	<br />
 	<span style="float:left; color:black">delay</span>
