@@ -42,7 +42,8 @@ function CreateInvervalTask(interval) {
 	intervalTask = setInterval(() => {
 		if (start) {
 			easyWin.webContents.sendInputEvent({keyCode: 'F9', type: 'keyDown'});
-			console.log('F9');
+            let D = new Date();
+			console.log('send request at ' + D.getHours() + " : " + D.getMinutes() + " : " + D.getSeconds() + " : " + D.getMilliseconds());
 		}
 	}, interval);
 }

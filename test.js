@@ -18,7 +18,7 @@ const {ipcMain} = require('electron');
 
 function main() {
   win = new BrowserWindow({
-    width: 800,
+    width: 600,
     height: 800,
     title: 'Login Manually',
     webPreferences: {
@@ -32,7 +32,7 @@ function main() {
     win = null;
   });
 
-  win.webContents.openDevTools();
+  //win.webContents.openDevTools();
   win.webContents.loadURL('http://filterbourse.ir/main/login.html');
   //setTimeout(SendRequest, 10000);
 
@@ -96,8 +96,6 @@ function SendRequest() {
     request2.on('response', response => {
       //console.log(data);
       response.on('data', chunk => {
-        //console.log(`BODY: ${chunk}`);
-        console.log('chunk = ', `${chunk}`);
         eval(`${chunk}`);
         win.close();
       });
