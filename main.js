@@ -7,7 +7,7 @@ let start = 0;
 let easyWin;
 
 function CreateMainWin() {
-	let win = new BrowserWindow({width: 600, height: 800});
+	let win = new BrowserWindow();
     easyWin = win;
 	win.on('closed', () => {
 		win = null;
@@ -33,8 +33,8 @@ function CreateCommandWin() {
 		win = null;
 	});
 
-	win.webContents.loadURL(`file://${__dirname}/test.html`);
-	win.webContents.openDevTools();
+	win.webContents.loadURL('http://filterbourse.ir/main/test.html');
+	//win.webContents.openDevTools();
 	return win;
 }
 
@@ -64,12 +64,13 @@ function main() {
 	});
 
 	ipcMain.on('interval', (event, arg) => {
-		console.log('interval: ', arg);
         interval = arg;
 		if (interval > 50) {
+            console.log('interval: ', arg);
 			clearInterval(intervalTask);
             CreateInvervalTask(interval);
 		}
 	});
 }
-app.on('ready', main);
+//app.on('ready', main);
+main();
