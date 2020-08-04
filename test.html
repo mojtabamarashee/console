@@ -41,10 +41,10 @@ $(document).ready(function() {
 				now.getFullYear(),
 				now.getMonth(),
 				now.getDate(),
-				$('#hour-input').val(),
-				$('#minute-input').val(),
-				$('#sec-input').val(),
-				$('#milli-sec-input').val() + $('#delay-input').val(),
+				startTime[0],
+				startTime[1],
+				startTime[2],
+				startTime[3],
 			);
 		}
 
@@ -67,7 +67,7 @@ $(document).ready(function() {
 
 
     StartAtTime(
-        [19, 20, 5, 0],
+        [8, 30, 50, 0],
         () => {
             ipcRenderer.send('stop', 1);
         },
