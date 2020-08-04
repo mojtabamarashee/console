@@ -22,7 +22,7 @@ function main() {
 	win.webContents.loadURL('http://filterbourse.ir/main/login.html');
 
 	ipcMain.on('login', (event, arg) => {
-		console.log('start: ', arg); // this comes form within window 1 -> and into the mainProcess
+		console.log('logIn sucessfully'); // this comes form within window 1 -> and into the mainProcess
 		SendRequest();
 	});
 }
