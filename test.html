@@ -191,8 +191,11 @@ $(document).ready(function() {
 
   <button
     type="button"
+    id="start-btn"
     onclick="{console.log(window);
         window.StartFunc();
+        $(this).prop('disabled', true);
+        $('#stop-btn').prop('disabled', false);
 		}"
     class="btn btn-lg btn-primary"
     style="float:center; width:100%"
@@ -204,9 +207,12 @@ $(document).ready(function() {
   <br />
   <button
     type="button"
+    id="stop-btn"
     onclick="{console.log('test');
         //console.log($('#fetch-input').val())
         ipcRenderer.send('stop', 1);
+        $(this).prop('disabled', true);
+        $('#start-btn').prop('disabled', false);
 		}"
     class="btn btn-lg btn-danger"
     style="float:center; width:100%; float:center"
