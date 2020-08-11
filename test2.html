@@ -13,8 +13,9 @@
             flex-direction: column;
         }
     </style>
-    <link rel="stylesheet" type="text/css" href="./node_modules/electron-navigation/themes/chrome-like.css">
+    <link rel="stylesheet" type="text/css" href="./chrome-like.css">
 </head>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <body>
     <div id="nav-body-ctrls">
@@ -31,7 +32,7 @@
          //const enav = new (require('electron-navigation'))();
         
         /* development */
-        const enav = new (require('./node_modules/electron-navigation/index.js'))();        
+        const enav = new (require('./index.js'))();        
         // create a new tab to www.google.com
         enav.newTab('https://d.easytrader.emofid.com/');
     </script>

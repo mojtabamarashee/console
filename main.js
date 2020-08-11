@@ -26,9 +26,13 @@ function CreateMainWin() {
   const filter = {
     urls: ['*://*/*'],
   };
-  //win.webContents.loadURL('https://d.easytrader.emofid.com/');
-  win.webContents.loadFile('./test2.html');
-  //win.webContents.openDevTools();
+  if (debug) {
+    win.webContents.loadFile('test2.html');
+  } else {
+    win.webContents.loadURL('https://d.easytrader.emofid.com/');
+  }
+  //win.webContents.loadFile('./test2.html');
+  win.webContents.openDevTools();
 
   session.defaultSession.webRequest.onBeforeSendHeaders(
     filter,
@@ -69,11 +73,11 @@ function CreateCommandWin() {
   });
 
   if (debug) {
-    win.webContents.loadURL(`https://d.easytrader.emofid.com/`);
+    win.webContents.loadFile(`./test.html`);
   } else {
     win.webContents.loadURL('http://filterbourse.ir/main/test.html');
   }
-  win.webContents.openDevTools();
+  //win.webContents.openDevTools();
   return win;
 }
 
